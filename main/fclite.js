@@ -11,6 +11,8 @@ if (typeof window.FriendCircleLite === 'undefined') {
             this.errorImg = config.error_img ?? 'https://fastly.jsdelivr.net/gh/JLinMr/Friend-Circle-Lite@latest/static/favicon.ico';
             this.start = 0;
             this.allArticles = [];
+            this.cacheKey = 'fcl_cache';
+            this.cacheTimeKey = 'fcl_time';
             this.cacheDuration = config.cache_duration ?? 10 * 60 * 1000; // 默认10分钟
 
             this.throttledLoadMore = this.throttle(this.loadMore.bind(this), 500);
@@ -57,31 +59,41 @@ if (typeof window.FriendCircleLite === 'undefined') {
         }
 
         async fetchArticlesWithCache() {
-            const cacheKey = 'friend-circle-lite-cache';
-            const cacheTimeKey = 'friend-circle-lite-cache-time';
-            
             try {
-                const cacheTime = localStorage.getItem(cacheTimeKey);
-                const now = Date.now();
-                
-                if (cacheTime && (now - parseInt(cacheTime) < this.cacheDuration)) {
-                    const cachedData = localStorage.getItem(cacheKey);
-                    if (cachedData) return { data: JSON.parse(cachedData), fromCache: true };
-                }
+                const cached = this.getCache();
+                if (cached) return { data: cached, fromCache: true };
 
                 const response = await fetch(`${this.apiUrl}all.json`);
                 const data = await response.json();
                 
-                try {
-                    localStorage.setItem(cacheKey, JSON.stringify(data));
-                    localStorage.setItem(cacheTimeKey, now.toString());
-                } catch (e) {
-                    console.warn('缓存存储失败:', e);
-                }
-                
+                this.setCache(data);
                 return { data, fromCache: false };
             } catch (error) {
                 throw new Error('获取文章列表失败');
+            }
+        }
+
+        getCache() {
+            try {
+                const cacheTime = localStorage.getItem(this.cacheTimeKey);
+                if (!cacheTime) return null;
+                
+                const now = Date.now();
+                if (now - parseInt(cacheTime) >= this.cacheDuration) return null;
+                
+                const cached = localStorage.getItem(this.cacheKey);
+                return cached ? JSON.parse(cached) : null;
+            } catch {
+                return null;
+            }
+        }
+
+        setCache(data) {
+            try {
+                localStorage.setItem(this.cacheKey, JSON.stringify(data));
+                localStorage.setItem(this.cacheTimeKey, Date.now().toString());
+            } catch (e) {
+                console.warn('缓存存储失败:', e);
             }
         }
 
