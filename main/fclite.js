@@ -29,7 +29,8 @@ if (typeof window.FriendCircleLite === 'undefined') {
             };
 
             // 事件委托
-            this.root.addEventListener('click', e => this.handleClick(e));
+            this.handleClick = this.handleClick.bind(this);
+            this.root.addEventListener('click', this.handleClick);
             window.updateRandomArticle = () => this.updateRandomArticle();
             
             this.loadInitialContent();
@@ -86,7 +87,8 @@ if (typeof window.FriendCircleLite === 'undefined') {
 
         async displayArticles(isInitial = false) {
             const start = isInitial ? 0 : this.start;
-            const articles = this.allArticles.slice(start, start + this.pageSize);
+            const end = start + this.pageSize;
+            const articles = this.allArticles.slice(start, end);
             
             if (articles.length === 0) {
                 this.elements.loadMore.style.display = 'none';
@@ -128,7 +130,7 @@ if (typeof window.FriendCircleLite === 'undefined') {
 
             animateCards();
 
-            this.start += this.pageSize;
+            this.start = end;
             this.elements.loadMore.style.display = 
                 this.start >= this.allArticles.length ? 'none' : 'block';
         }
@@ -302,6 +304,16 @@ if (typeof window.FriendCircleLite === 'undefined') {
                 }
             });
         }
+
+        cleanup() {
+            // 清理事件监听
+            this.root?.removeEventListener('click', this.handleClick);
+            // 清理 IntersectionObserver
+            this.imageObserver?.disconnect();
+            // 重置变量
+            this.start = 0;
+            this.allArticles = [];
+        }
     }
 }
 
@@ -311,10 +323,7 @@ if (typeof window.initializeFriendCircleLite === 'undefined') {
         let instance = null;
         return () => {
             if (instance) {
-                // 清理旧实例
-                if (instance.cleanup) {
-                    instance.cleanup();
-                }
+                instance.cleanup();
                 window.fcInstance = null;
             }
             instance = new window.FriendCircleLite('friend-circle-lite-root');
