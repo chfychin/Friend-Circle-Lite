@@ -15,6 +15,13 @@
             margin: 10px auto;
             max-width: 1200px;
         }
+        
+        @media screen and (max-width: 768px) {
+            #random-article {
+                display: none !important;
+            }
+        }
+        
         .scroll-down-icon {
             position: absolute;
             bottom: 20px;
@@ -70,6 +77,14 @@
         <div id="stats"></div>
     </div>
 
+    <script>
+        // 添加滚动按钮事件处理
+        document.getElementById('scroll-down-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            const friendCircle = document.getElementById('friend-circle-lite-root');
+            friendCircle.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
     <script>
         if (typeof UserConfig === 'undefined') {
             var UserConfig = {
