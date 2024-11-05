@@ -71,6 +71,7 @@
     box-sizing: border-box;
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-color) transparent;
+    user-select: none;
 }
 
 html {
@@ -137,33 +138,27 @@ p {
 }
 
 #friend-circle-lite-root {
-    padding: 10px 0;
-    margin: 10px auto;
-    gap: 10px;
-    max-width: 1200px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 /* 5. 卡片相关样式 */
 /* 随机文章卡片 */
 #random-article {
-    display: flex;
     padding: 15px;
     background-color: var(--container-bg-color);
     border-radius: 10px;
-    outline: 1px solid var(--border-color);
-    transition: all .5s ease-in-out;
-    flex-direction: column;
-    user-select: none;
+    border: 1px solid var(--border-color);
+    min-height: 59px;
+    transition: all .3s ease;
 }
 
 #random-article:hover {
-    outline: 1px solid var(--hover-color);
+    border: 1px solid var(--hover-color);
 }
 
-.fishing-random,
-.pond-section {
+.fishing-random{
     display: flex;
     flex-direction: column;
     gap: 10px;
