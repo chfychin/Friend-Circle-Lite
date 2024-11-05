@@ -230,12 +230,6 @@ if (typeof window.FriendCircleLite === 'undefined') {
             if (!randomArticle) return;
             
             this.elements.random.innerHTML = `
-                <div class="random-header">
-                    <span>🎣 钓鱼</span>
-                    <svg class="random-refresh" viewBox="0 0 1024 1024" width="16" height="16">
-                        <path d="M772.6 320H672c-35.4 0-64 28.6-64 64s28.6 64 64 64h256c35.4 0 64-28.6 64-64V128c0-35.4-28.6-64-64-64s-64 28.6-64 64v102.4l-35.2-35.2c-175-175-458.6-175-633.6 0s-175 458.6 0 633.6 458.6 175 633.6 0c25-25 25-65.6 0-90.6s-65.6-25-90.6 0c-125 125-327.6 125-452.6 0s-125-327.6 0-452.6 327.6-125 452.6 0l34.4 34.4z"></path>
-                    </svg>
-                </div>
                 <div class="random-content">
                     太牛了🤠 ！大师！ 你钓到了
                     <span class="random-author" data-author="${randomArticle.author}" 

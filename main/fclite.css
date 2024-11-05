@@ -137,21 +137,19 @@ p {
 }
 
 #friend-circle-lite-root {
-    margin-top: 0.5rem;
-    width: 100%;
-    animation: fadeIn 0.5s ease-in-out forwards;
-    position: relative;
+    padding: 10px 0;
+    margin: 10px auto;
+    gap: 10px;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* 5. 卡片相关样式 */
-
 /* 随机文章卡片 */
 #random-article {
     display: flex;
-    padding: 10px;
-    gap: 10px;
-    margin-bottom: 8px;
-    min-height: 84px;
+    padding: 15px;
     background-color: var(--container-bg-color);
     border-radius: 10px;
     outline: 1px solid var(--border-color);
@@ -164,12 +162,19 @@ p {
     outline: 1px solid var(--hover-color);
 }
 
+.fishing-random,
+.pond-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .random-header {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .random-refresh {
