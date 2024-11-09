@@ -66,3 +66,5 @@ specific_RSS:
     url: "https://blog.imsyy.top/rss.xml"
   - name: "刘郎阁"
     url: "https://yjvc.cn/index.php/feed/"
+  - name: "RisingIce"
+    url: "https://www.imrising.cn/rss.xml"
