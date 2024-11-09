@@ -443,30 +443,24 @@ p {
 }
 
 #friend-circle-lite-root .card-bg {
-    z-index: 0;
-    border-radius: 50%;
-    margin: -30px;
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 150px;
-    height: 150px;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
     opacity: 0.4;
-    transform: scale(.9);
     transition: all 0.3s ease-in-out;
-    -webkit-filter: blur(2px);
-            filter: blur(2px);
+    filter: blur(3px);
+    z-index: 0;
 }
 .card:hover {
     border: 1px solid var(--hover-color);
 }
 
 #friend-circle-lite-root .card:hover .card-bg {
-    -webkit-filter: blur(0);
-            filter: blur(0);
-    transform: scale(.8);
-    margin: 0;
-    opacity: 0.6;
+    transform: translateY(-50%) scale(1.2);
 }
 
 #load-more-btn {
