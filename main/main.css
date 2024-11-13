@@ -151,7 +151,7 @@ p {
     border-radius: 10px;
     border: 1px solid var(--border-color);
     min-height: 59px;
-    transition: border .5s ease-in-out;
+    transition: all .5s ease-in-out;
     line-height: 1.6;
 }
 
