@@ -223,7 +223,7 @@ p {
     position: relative;
     overflow: hidden;
     height: 150px;
-    transition: border .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 
 .card:hover {
