@@ -69,7 +69,7 @@ jobs:
     - name: Commit changes
       run: |
         mkdir -p pages
-        cp -r main static/index.html static/readme.md static/favicon.ico static/edgeone.json static/static.json pages/
+        cp -r main static/index.html static/readme.md static/favicon.ico static/edgeone.json pages/
         cp -r rss_subscribe pages/
         cd pages
         git init
