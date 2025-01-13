@@ -3,7 +3,8 @@ name: Friend Circle Lite
 on:
   # run automatically every 1 week
   schedule:
-    - cron: "0 0 * * 0" # Runs every week, on the week
+    # - cron: "0 0 * * 0" # Runs every week, on the week
+    - cron: "0 0 1 * *" # Runs every month, on the month
   workflow_dispatch:
 
 env:
