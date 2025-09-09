@@ -2,7 +2,9 @@ name: Friend Circle Lite
 
 on:
   schedule:
-    - cron: "0 */4 * * *"
+    - cron: '0 10 */2 * *' # Running every 48 hours at 10:00 AM
+    # - cron: '0 10 1 * *' # Running on the 1st of each month
+    # - cron: '0 10 15 * *' # Running on the 15st of each month
   workflow_dispatch:
   push:
     branches:
